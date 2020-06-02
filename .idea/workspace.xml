@@ -2,9 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="fd3d7b08-dd93-4ce4-afe6-bf73e9027c3c" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/Gameplay.form" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Gameplay.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/QuestionGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/QuestionGenerator.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -17,16 +16,12 @@
     <option name="isMigrated" value="true" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Gameplay.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="255">
               <caret line="21" selection-start-line="21" selection-end-line="21" />
-              <folding>
-                <element signature="e#673#823#0" expanded="true" />
-                <element signature="e#822#823#0" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -39,8 +34,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/QuestionGenerator.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret column="30" selection-start-column="30" selection-end-column="30" />
+            <state relative-caret-position="257">
+              <caret line="28" column="44" selection-start-line="28" selection-start-column="44" selection-end-line="28" selection-end-column="44" />
             </state>
           </provider>
         </entry>
@@ -62,6 +57,7 @@
       <list>
         <option value="$PROJECT_DIR$/src/Gameplay.form" />
         <option value="$PROJECT_DIR$/src/Gameplay.java" />
+        <option value="$PROJECT_DIR$/src/QuestionGenerator.java" />
       </list>
     </option>
   </component>
@@ -134,7 +130,7 @@
     <frame x="4" y="23" width="1427" height="816" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25487363" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25848377" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="UI Designer" order="3" />
@@ -162,10 +158,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
           <caret line="21" selection-start-line="21" selection-end-line="21" />
-          <folding>
-            <element signature="e#673#823#0" expanded="true" />
-            <element signature="e#822#823#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -174,8 +166,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/QuestionGenerator.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="30" selection-start-column="30" selection-end-column="30" />
+        <state relative-caret-position="257">
+          <caret line="28" column="44" selection-start-line="28" selection-start-column="44" selection-end-line="28" selection-end-column="44" />
         </state>
       </provider>
     </entry>
