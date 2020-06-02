@@ -14,6 +14,8 @@ public class Gameplay {
     private JButton StartButton;
     private JLabel ActionMessage;
 
+    private QuestionGenerator generator;
+
     public Gameplay() {
 
         StartButton.addActionListener(new ActionListener() {
