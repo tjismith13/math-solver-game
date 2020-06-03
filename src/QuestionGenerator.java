@@ -43,7 +43,7 @@ public class QuestionGenerator {
         //Division can have larger numerator.
         else if (medium) {
             if (signGenerator == 3) {
-                secondNum = random.nextInt(13);
+                secondNum = random.nextInt(13) + 1;
                 firstNum = secondNum * random.nextInt(6);
             } else {
                 firstNum = random.nextInt(13);
@@ -55,7 +55,7 @@ public class QuestionGenerator {
         //Hard question generator, both numbers less than 13
         else {
             if(signGenerator == 3) {
-                secondNum = random.nextInt(13);
+                secondNum = random.nextInt(13) + 1;
                 firstNum = secondNum * random.nextInt(7);
             }
             else {

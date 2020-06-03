@@ -19,6 +19,7 @@ public class Gameplay {
     private QuestionGenerator generator = new QuestionGenerator();
     private String currentQ;
     private int score = 0;
+    private Clock clock = new Clock();
 
     public Gameplay() {
 
