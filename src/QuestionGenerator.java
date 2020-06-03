@@ -125,13 +125,17 @@ public class QuestionGenerator {
 
             //First number is single digit.
             if(chars[1] == '*' || chars[1] == '+' || chars[1] == '-' || chars[1] == '/') {
-                    firstNum = chars[0];
-                    secondNum = Integer.parseInt(String.valueOf(chars[2] + chars[3]));
+                    firstNum = Integer.parseInt(String.valueOf(chars[0]));
+                    String char1 = String.valueOf(chars[2]);
+                    String char2 = String.valueOf(chars[3]);
+                    secondNum = Integer.parseInt(char1 + char2);
             }
 
             //First number is double digit.
             else {
-                firstNum = Integer.parseInt(String.valueOf(chars[0] + chars[1]));
+                String char1 = String.valueOf(chars[0]);
+                String char2 = String.valueOf(chars[1]);
+                firstNum = Integer.parseInt(char1 + char2);
                 secondNum = Integer.parseInt(String.valueOf(chars[3]));
             }
 

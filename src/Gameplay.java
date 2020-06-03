@@ -22,6 +22,7 @@ public class Gameplay {
 
     public Gameplay() {
 
+        //When start/restart is pressed
         startButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -30,10 +31,10 @@ public class Gameplay {
                 currentQ = generator.generateQuestion(true, false);
                 questionField.setText(currentQ);
                 startButton.setText("Restart");
-
             }
         });
 
+        //When submit is pressed
         answerButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
