@@ -1,8 +1,5 @@
 import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
+import java.awt.event.*;
 
 public class Gameplay {
     private JLabel title;
@@ -29,18 +26,20 @@ public class Gameplay {
             public void actionPerformed(ActionEvent e) {
                 score = 0;
                 questionsCorrect.setText("Score " + score);
+                clock.init(60);
+                timeClock.setText(String.valueOf(clock.timeRemaining()));
                 currentQ = generator.generateQuestion(true, false);
                 questionField.setText(currentQ);
                 startButton.setText("Restart");
             }
         });
-
+        
         //When submit is pressed
         answerButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 int answer = Integer.parseInt(answerField.getText());
-                if(generator.checkCorrect(currentQ, answer)) {
+                if (generator.checkCorrect(currentQ, answer)) {
                     score += 1;
                 }
                 questionsCorrect.setText("Score: " + score);
@@ -55,5 +54,6 @@ public class Gameplay {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
+
     }
 }
