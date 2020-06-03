@@ -8,7 +8,7 @@ public class QuestionGenerator {
     private int secondNum;
 
 
-    public String generateQuestion(boolean easy, boolean medium, boolean hard) {
+    public String generateQuestion(boolean easy, boolean medium) {
 
         int signGenerator = random.nextInt(4);
         String sign = " ";
@@ -27,10 +27,8 @@ public class QuestionGenerator {
 
         if (easy) {
             if(signGenerator == 3) {
-                firstNum = random.nextInt(10);
-                for (int i = 0; i < random.nextInt(10); i += firstNum) {
-                    secondNum = i;
-                }
+                secondNum = random.nextInt(10);
+                firstNum = secondNum * random.nextInt(5);
             }
             else {
                 firstNum = random.nextInt(10);
@@ -41,10 +39,8 @@ public class QuestionGenerator {
         }
         else if (medium) {
             if (signGenerator == 3) {
-                firstNum = random.nextInt(13);
-                for (int i = 0; i < random.nextInt(10); i += firstNum) {
-                    secondNum = i;
-                }
+                secondNum = random.nextInt(13);
+                firstNum = secondNum * random.nextInt(6);
             } else {
                 firstNum = random.nextInt(13);
                 secondNum = random.nextInt(10);
@@ -53,10 +49,8 @@ public class QuestionGenerator {
         }
         else {
             if(signGenerator == 3) {
-                firstNum = random.nextInt(13);
-                for (int i = 0; i < random.nextInt(13); i += firstNum) {
-                    secondNum = i;
-                }
+                secondNum = random.nextInt(13);
+                firstNum = secondNum * random.nextInt(7);
             }
             else {
                 firstNum = random.nextInt(13);
