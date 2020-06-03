@@ -25,9 +25,12 @@ public class Gameplay {
         startButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                score = 0;
+                questionsCorrect.setText("Score " + score);
                 currentQ = generator.generateQuestion(true, false);
                 questionField.setText(currentQ);
                 startButton.setText("Restart");
+
             }
         });
 
