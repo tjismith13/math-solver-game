@@ -4,7 +4,7 @@ import java.util.Random;
 
 public class QuestionGenerator {
     private Random random = new Random();
-    private int firstNum;;
+    private int firstNum;
     private int secondNum;
 
 
@@ -26,20 +26,42 @@ public class QuestionGenerator {
         }
 
         if (easy) {
-            firstNum = random.nextInt(10);
-            secondNum = random.nextInt(10);
+            if(signGenerator == 3) {
+                firstNum = random.nextInt(10);
+                for (int i = 0; i < random.nextInt(10); i += firstNum) {
+                    secondNum = i;
+                }
+            }
+            else {
+                firstNum = random.nextInt(10);
+                secondNum = random.nextInt(10);
+            }
 
             return firstNum + sign + secondNum;
         }
         else if (medium) {
-            firstNum = random.nextInt(13);
-            secondNum = random.nextInt(10);
-
+            if (signGenerator == 3) {
+                firstNum = random.nextInt(13);
+                for (int i = 0; i < random.nextInt(10); i += firstNum) {
+                    secondNum = i;
+                }
+            } else {
+                firstNum = random.nextInt(13);
+                secondNum = random.nextInt(10);
+            }
             return firstNum + sign + secondNum;
         }
         else {
-            firstNum = random.nextInt(13);
-            secondNum = random.nextInt(13);
+            if(signGenerator == 3) {
+                firstNum = random.nextInt(13);
+                for (int i = 0; i < random.nextInt(13); i += firstNum) {
+                    secondNum = i;
+                }
+            }
+            else {
+                firstNum = random.nextInt(13);
+                secondNum = random.nextInt(13);
+            }
 
             return firstNum + sign + secondNum;
         }
