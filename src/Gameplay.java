@@ -17,23 +17,27 @@ public class Gameplay {
     private String currentQ;
     private int score = 0;
     private Clock clock = new Clock();
+    private String timeRemaining;
 
     public Gameplay() {
+
+        clock.init(60);
+        timeRemaining = String.valueOf(clock.timeRemaining());
 
         //When start/restart is pressed
         startButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                answerField.setText("");
                 score = 0;
                 questionsCorrect.setText("Score " + score);
-                clock.init(60);
-                timeClock.setText(String.valueOf(clock.timeRemaining()));
+                timeClock.setText(timeRemaining);
                 currentQ = generator.generateQuestion(true, false);
                 questionField.setText(currentQ);
                 startButton.setText("Restart");
             }
         });
-        
+
         //When submit is pressed
         answerButton.addActionListener(new ActionListener() {
             @Override
@@ -42,9 +46,12 @@ public class Gameplay {
                 if (generator.checkCorrect(currentQ, answer)) {
                     score += 1;
                 }
+                
                 questionsCorrect.setText("Score: " + score);
                 currentQ = generator.generateQuestion(false, true);
                 questionField.setText(currentQ);
+                answerField.setText("");
+                timeClock.setText(timeRemaining);
             }
         });
     }
@@ -54,6 +61,5 @@ public class Gameplay {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
-
     }
 }
