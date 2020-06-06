@@ -69,7 +69,7 @@ public class QuestionGenerator {
 
     //Check for correct answer. String must be presented in the same form as the generator outputs.
     //No spaces in string.
-    public boolean checkCorrect (String question, int answer) {
+    public int correct (String question) {
         char[] chars = question.toCharArray();
 
         //Check if question has two double digit numbers.
@@ -85,16 +85,16 @@ public class QuestionGenerator {
             //Check operator sign and evaluate,
             //return true if the answer passed in is correct.
             if(chars[2] == '*') {
-                return firstNum * secondNum == answer;
+                return firstNum * secondNum;
             }
             else if(chars[2] == '+') {
-                return firstNum + secondNum == answer;
+                return firstNum + secondNum;
             }
             else if(chars[2] == '-') {
-                return firstNum - secondNum == answer;
+                return firstNum - secondNum;
             }
             else {
-                return firstNum / secondNum == answer;
+                return firstNum / secondNum;
             }
         }
 
@@ -107,16 +107,16 @@ public class QuestionGenerator {
             //Check sign and evaluate, returning
             //true or false based on passed answer.
             if(chars[1] == '*') {
-                return firstNum * secondNum == answer;
+                return firstNum * secondNum;
             }
             else if(chars[1] == '+') {
-                return firstNum + secondNum == answer;
+                return firstNum + secondNum;
             }
             else if(chars[1] == '-') {
-                return firstNum - secondNum == answer;
+                return firstNum - secondNum;
             }
             else {
-                return firstNum / secondNum == answer;
+                return firstNum / secondNum;
             }
         }
 
@@ -142,16 +142,16 @@ public class QuestionGenerator {
             //Check sign and evaluate, return true or false
             //based on passed answer.
             if(chars[1] == '*' || chars[2] == '*') {
-                return firstNum * secondNum == answer;
+                return firstNum * secondNum;
             }
             else if(chars[1] == '+' || chars[2] == '+') {
-                return firstNum + secondNum == answer;
+                return firstNum + secondNum;
             }
             else if(chars[1] == '-' || chars[2] == '-') {
-                return firstNum - secondNum == answer;
+                return firstNum - secondNum;
             }
             else {
-                return firstNum / secondNum == answer;
+                return firstNum / secondNum;
             }
         }
     }

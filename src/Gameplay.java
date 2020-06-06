@@ -12,12 +12,15 @@ public class Gameplay {
     private JLabel actionMessage;
     private JButton answerButton;
     private JPanel background;
+    private JLabel actualAnswer;
 
     private QuestionGenerator generator = new QuestionGenerator();
     private String currentQ;
     private int score = 0;
     private Clock clock = new Clock();
     private String timeRemaining;
+    private IntChecker intChecker = new IntChecker();
+    private int answer;
 
     public Gameplay() {
 
@@ -42,16 +45,30 @@ public class Gameplay {
         answerButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                int answer = Integer.parseInt(answerField.getText());
-                if (generator.checkCorrect(currentQ, answer)) {
-                    score += 1;
+                if (startButton.getText().equals("Start")) {
+                    answerField.setText("Press 'start' to begin!");
                 }
-                
-                questionsCorrect.setText("Score: " + score);
-                currentQ = generator.generateQuestion(false, true);
-                questionField.setText(currentQ);
-                answerField.setText("");
-                timeClock.setText(timeRemaining);
+                else {
+                    String answerText = answerField.getText();
+                    if (!intChecker.isInt(answerText)) answer = 0;
+
+                    else if(answerText.isEmpty()) answer = 0;
+
+                    else answer = Integer.parseInt(answerText);
+
+                    if (generator.correct(currentQ) == answer) {
+                        score += 1;
+                        actualAnswer.setText("Actual Answer:");
+                    }
+
+                    else actualAnswer.setText("Actual Answer: " + generator.correct(currentQ));
+
+                    questionsCorrect.setText("Score: " + score);
+                    currentQ = generator.generateQuestion(false, true);
+                    questionField.setText(currentQ);
+                    answerField.setText("");
+                    timeClock.setText(timeRemaining);
+                }
             }
         });
     }
