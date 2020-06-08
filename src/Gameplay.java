@@ -24,17 +24,14 @@ public class Gameplay {
 
     public Gameplay() {
 
-        clock.init(60);
-        timeRemaining = String.valueOf(clock.timeRemaining());
-
         //When start/restart is pressed
         startButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                clock.init(60);
                 answerField.setText("");
                 score = 0;
                 questionsCorrect.setText("Score " + score);
-                timeClock.setText(timeRemaining);
                 currentQ = generator.generateQuestion(true, false);
                 questionField.setText(currentQ);
                 startButton.setText("Restart");
@@ -45,14 +42,20 @@ public class Gameplay {
         answerButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (startButton.getText().equals("Start")) {
-                    answerField.setText("Press 'start' to begin!");
+                if (startButton.getText().equals("Start")) answerField.setText("Press 'start' to begin!");
+
+                else if (clock.timeRemaining() <= 0) {
+                    answerField.setText("Answer");
+                    highScore.setText("High Score" + score);
+                    questionField.setText("Question");
+                    actualAnswer.setText("");
                 }
+
                 else {
                     String answerText = answerField.getText();
-                    if (!intChecker.isInt(answerText)) answer = 0;
+                    if (!intChecker.isInt(answerText)) answer = -1000;
 
-                    else if(answerText.isEmpty()) answer = 0;
+                    else if(answerText.isEmpty()) answer = -1000;
 
                     else answer = Integer.parseInt(answerText);
 
@@ -67,16 +70,22 @@ public class Gameplay {
                     currentQ = generator.generateQuestion(false, true);
                     questionField.setText(currentQ);
                     answerField.setText("");
-                    timeClock.setText(timeRemaining);
+                    timeRemaining = String.valueOf(clock.timeRemaining());
+                    //timeClock.setText(timeRemaining);
                 }
             }
         });
     }
     public static void main(String[] args) {
         JFrame frame = new JFrame("frmMainScreen");
-        frame.setContentPane(new Gameplay().background);
+        Gameplay gameplay = new Gameplay();
+        frame.setContentPane(gameplay.background);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
+        if (gameplay.clock.timeRemaining() > 0) {
+            System.out.println("Time Remaining: " + gameplay.timeRemaining);
+            gameplay.timeClock.setText("Time Remaining: " + gameplay.timeRemaining);
+        }
     }
 }

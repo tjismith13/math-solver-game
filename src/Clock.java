@@ -1,7 +1,7 @@
 import static java.lang.System.currentTimeMillis;
 
 public class Clock {
-    private int secondsPassed;
+    private long secondsPassed;
     private long realTime = 0;
     private int startTimeSec;
 
@@ -10,14 +10,14 @@ public class Clock {
     //and count number of seconds passed.
     public void init(int startTimeSec) {
         this.startTimeSec = startTimeSec;
-        if(realTime != 0) {
-            secondsPassed = Math.round((System.currentTimeMillis() - realTime) / 1000);
-        }
         realTime = System.currentTimeMillis();
     }
 
     //Return time remaining
-    public int timeRemaining() {
+    public long timeRemaining() {
+        if(realTime != 0) {
+            secondsPassed = (System.currentTimeMillis() - realTime) / 1000;
+        }
         return startTimeSec - secondsPassed;
     }
 }
