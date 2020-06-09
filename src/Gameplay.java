@@ -1,5 +1,8 @@
 import javax.swing.*;
 import java.awt.event.*;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
 
 public class Gameplay {
     private JLabel title;
@@ -21,6 +24,7 @@ public class Gameplay {
     private String timeRemaining;
     private IntChecker intChecker = new IntChecker();
     private int answer;
+    private HighScore highScoreChecker;
 
     public Gameplay() {
 
@@ -50,6 +54,9 @@ public class Gameplay {
                     highScore.setText("High Score" + score);
                     questionField.setText("Question");
                     actualAnswer.setText("");
+                   // if(highScoreChecker.isHighScore(score)) {
+                        //highScoreChecker.updateHighScore(score);
+                    //}
                 }
 
                 else {
@@ -84,9 +91,11 @@ public class Gameplay {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
-        if (gameplay.clock.timeRemaining() > 0) {
-            System.out.println("Time Remaining: " + gameplay.timeRemaining);
-            gameplay.timeClock.setText("Time Remaining: " + gameplay.timeRemaining);
+        File file = new File("/Users/tjismith13/MathSolverGame/src/HighScoreStorage");
+        Scanner scanner = new Scanner(file);
+        System.out.println(file.exists());
+        System.out.println(file.getAbsolutePath());
+        System.out.println(file.canRead());
+        System.out.println(file.canWrite());
         }
     }
-}
