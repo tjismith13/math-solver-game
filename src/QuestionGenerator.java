@@ -31,6 +31,13 @@ public class QuestionGenerator {
                 secondNum = random.nextInt(10) + 1;
                 firstNum = secondNum * random.nextInt(5);
             }
+            else if (signGenerator == 2) {
+                firstNum = random.nextInt(10);
+                secondNum = random.nextInt(10);
+                while(secondNum > firstNum) {
+                    secondNum = random.nextInt(10);
+                }
+            }
             else {
                 firstNum = random.nextInt(10);
                 secondNum = random.nextInt(10);
@@ -45,6 +52,12 @@ public class QuestionGenerator {
             if (signGenerator == 3) {
                 secondNum = random.nextInt(13) + 1;
                 firstNum = secondNum * random.nextInt(6);
+            } else if (signGenerator == 2) {
+                firstNum = random.nextInt(10);
+                secondNum = random.nextInt(10);
+                while (secondNum > firstNum) {
+                    secondNum = random.nextInt(10);
+                }
             } else {
                 firstNum = random.nextInt(13);
                 secondNum = random.nextInt(10);
@@ -52,11 +65,19 @@ public class QuestionGenerator {
             return firstNum + sign + secondNum;
         }
 
+
         //Hard question generator, both numbers less than 13
         else {
             if(signGenerator == 3) {
                 secondNum = random.nextInt(13) + 1;
                 firstNum = secondNum * random.nextInt(7);
+            }
+            else if (signGenerator == 2) {
+                firstNum = random.nextInt(10);
+                secondNum = random.nextInt(10);
+                while (secondNum > firstNum) {
+                    secondNum = random.nextInt(10);
+                }
             }
             else {
                 firstNum = random.nextInt(13);

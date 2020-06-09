@@ -45,6 +45,7 @@ public class Gameplay {
                 if (startButton.getText().equals("Start")) answerField.setText("Press 'start' to begin!");
 
                 else if (clock.timeRemaining() <= 0) {
+                    timeClock.setText("0");
                     answerField.setText("Answer");
                     highScore.setText("High Score" + score);
                     questionField.setText("Question");
@@ -71,7 +72,7 @@ public class Gameplay {
                     questionField.setText(currentQ);
                     answerField.setText("");
                     timeRemaining = String.valueOf(clock.timeRemaining());
-                    //timeClock.setText(timeRemaining);
+                    timeClock.setText(timeRemaining);
                 }
             }
         });
