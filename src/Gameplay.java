@@ -133,7 +133,7 @@ public class Gameplay {
                     answerField.setText("");
                 }
                 //While game is happening, last 15 seconds
-                else {
+                else if (clock.timeRemaining() < 15 && clock.timeRemaining() > 0) {
 
                     //Check that answer is an integer
                     String answerText = answerField.getText();
@@ -158,6 +158,7 @@ public class Gameplay {
                     questionField.setText(currentQ);
                     answerField.setText("");
                 }
+                else answerField.setText("Press 'start' to begin!");
             }
         });
     }
