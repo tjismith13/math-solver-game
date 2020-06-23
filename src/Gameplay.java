@@ -26,27 +26,8 @@ public class Gameplay {
     private IntChecker intChecker = new IntChecker();
     private int answer;
     private HighScore highScoreChecker = new HighScore();
+    private int timesRestart = 0;
 
-    //Thread to be called when start/restart is pressed, creates and updates new countdown clock
-    private Thread clockThread = new Thread() {
-        public void run() {
-            clock.init(60);
-            while (clock.timeRemaining() >= 0) {
-                timeClock.setText(String.valueOf(clock.timeRemaining()));
-            }
-            if (clock.timeRemaining() < 1) {
-                //Game reset
-                timeClock.setText("0");
-                answerField.setText("Answer");
-                questionField.setText("Question");
-                actualAnswer.setText("");
-
-                //Update and display high score
-                highScoreChecker.updateHighScore(score);
-                highScore.setText("High Score: " + highScoreChecker.getHighScore());
-            }
-        }
-    };
 
     public Gameplay() {
 
@@ -55,7 +36,26 @@ public class Gameplay {
             @Override
             public void actionPerformed(ActionEvent e) {
 
-                //Start clock
+                Thread clockThread = new Thread() {
+                    public void run() {
+                        clock.init(60);
+                        while (clock.timeRemaining() >= 0) {
+                            timeClock.setText(String.valueOf(clock.timeRemaining()));
+                        }
+                        if (clock.timeRemaining() < 1) {
+                            //Game reset
+                            timeClock.setText("0");
+                            answerField.setText("Answer");
+                            questionField.setText("Question");
+                            actualAnswer.setText("");
+
+                            //Update and display high score
+                            highScoreChecker.updateHighScore(score);
+                            highScore.setText("High Score: " + highScoreChecker.getHighScore());
+                        }
+                    }
+                };
+
                 clockThread.start();
 
                 //Set or Reset Game
