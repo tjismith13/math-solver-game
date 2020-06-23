@@ -1,5 +1,7 @@
 import javax.swing.*;
 import java.awt.event.*;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
@@ -28,6 +30,7 @@ public class Gameplay {
 
     public Gameplay() {
 
+
         //When start/restart is pressed
         startButton.addActionListener(new ActionListener() {
             @Override
@@ -55,22 +58,18 @@ public class Gameplay {
                     actualAnswer.setText("");
                     highScoreChecker.updateHighScore(score);
                     highScore.setText("High Score" + highScoreChecker.getHighScore());
-                }
-
-                else {
+                } else {
                     String answerText = answerField.getText();
                     if (!intChecker.isInt(answerText)) answer = -1000;
 
-                    else if(answerText.isEmpty()) answer = -1000;
+                    else if (answerText.isEmpty()) answer = -1000;
 
                     else answer = Integer.parseInt(answerText);
 
                     if (generator.correct(currentQ) == answer) {
                         score += 1;
                         actualAnswer.setText("Actual Answer:");
-                    }
-
-                    else actualAnswer.setText("Actual Answer: " + generator.correct(currentQ));
+                    } else actualAnswer.setText("Actual Answer: " + generator.correct(currentQ));
 
                     questionsCorrect.setText("Score: " + score);
                     currentQ = generator.generateQuestion(false, true);
@@ -78,16 +77,36 @@ public class Gameplay {
                     answerField.setText("");
                     timeRemaining = String.valueOf(clock.timeRemaining());
                     timeClock.setText(timeRemaining);
+
                 }
             }
         });
     }
-    public static void main(String[] args) {
-        JFrame frame = new JFrame("frmMainScreen");
-        Gameplay gameplay = new Gameplay();
-        frame.setContentPane(gameplay.background);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.pack();
-        frame.setVisible(true);
+        public void updateClock() {
+            timeClock.setText(timeRemaining);
+        }
+
+        public static void main(String[] args) {
+            JFrame frame = new JFrame("frmMainScreen");
+            Gameplay gameplay = new Gameplay();
+            frame.setContentPane(gameplay.background);
+            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            frame.pack();
+            frame.setVisible(true);
+            Thread clockThread = new Thread() {
+                Clock thClock = new Clock();
+                public void run() {
+                    try {
+                        thClock.init(60);
+                        for(;;) {
+                            gameplay.timeClock.setText(String.valueOf(thClock.timeRemaining()));
+                        }
+                    }
+                    catch(Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+            };
+            clockThread.start();
         }
     }
