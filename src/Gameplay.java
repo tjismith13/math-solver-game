@@ -40,11 +40,11 @@ public class Gameplay {
                     public void run() {
                         clock.init(60);
                         while (clock.timeRemaining() >= 0) {
-                            timeClock.setText(String.valueOf(clock.timeRemaining()));
+                            timeClock.setText("Time Remaining: " + clock.timeRemaining());
                         }
                         if (clock.timeRemaining() < 1) {
                             //Game reset
-                            timeClock.setText("0");
+                            timeClock.setText("Time Remaining: 0");
                             answerField.setText("Answer");
                             questionField.setText("Question");
                             actualAnswer.setText("");
@@ -161,14 +161,106 @@ public class Gameplay {
                 else answerField.setText("Press 'start' to begin!");
             }
         });
+
+        //Adding logic of submit button to enter key
+        answerField.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent e) {
+                if(e.getKeyCode() == KeyEvent.VK_ENTER) {
+                    //Ensures game is started
+                    if (startButton.getText().equals("Start")) answerField.setText("Press 'start' to begin!");
+
+                        //While game is happening, first 15 seconds
+                    else if (clock.timeRemaining() >= 45){
+
+                        //Check that answer is an integer
+                        String answerText = answerField.getText();
+                        if (!intChecker.isInt(answerText)) answer = -1000;
+
+                        else if (answerText.isEmpty()) answer = -1000;
+
+                        else answer = Integer.parseInt(answerText);
+
+                        //Check answer correctness and update score based on result
+                        if (generator.correct(currentQ) == answer) {
+                            score += 1;
+                            actualAnswer.setText("Actual Answer:");
+                        }
+
+                        //If answer is wrong display correct answer
+                        else actualAnswer.setText("Actual Answer: " + generator.correct(currentQ));
+
+                        //Questions in easy mode
+                        questionsCorrect.setText("Score: " + score);
+                        currentQ = generator.generateQuestion(true, false);
+                        questionField.setText(currentQ);
+                        answerField.setText("");
+                    }
+
+                    //While game is happening, middle 30 seconds
+                    else if (clock.timeRemaining() >= 15 && clock.timeRemaining() < 45){
+
+                        //Check that answer is an integer
+                        String answerText = answerField.getText();
+                        if (!intChecker.isInt(answerText)) answer = -1000;
+
+                        else if (answerText.isEmpty()) answer = -1000;
+
+                        else answer = Integer.parseInt(answerText);
+
+                        //Check answer correctness and update score based on result
+                        if (generator.correct(currentQ) == answer) {
+                            score += 1;
+                            actualAnswer.setText("Actual Answer:");
+                        }
+
+                        //If answer is wrong display correct answer
+                        else actualAnswer.setText("Actual Answer: " + generator.correct(currentQ));
+
+                        //Questions in medium difficulty mode
+                        questionsCorrect.setText("Score: " + score);
+                        currentQ = generator.generateQuestion(false, true);
+                        questionField.setText(currentQ);
+                        answerField.setText("");
+                    }
+                    //While game is happening, last 15 seconds
+                    else if (clock.timeRemaining() < 15 && clock.timeRemaining() > 0) {
+
+                        //Check that answer is an integer
+                        String answerText = answerField.getText();
+                        if (!intChecker.isInt(answerText)) answer = -1000;
+
+                        else if (answerText.isEmpty()) answer = -1000;
+
+                        else answer = Integer.parseInt(answerText);
+
+                        //Check answer correctness and update score based on result
+                        if (generator.correct(currentQ) == answer) {
+                            score += 1;
+                            actualAnswer.setText("Actual Answer:");
+                        }
+
+                        //If answer is wrong display correct answer
+                        else actualAnswer.setText("Actual Answer: " + generator.correct(currentQ));
+
+                        //Questions in hard mode
+                        questionsCorrect.setText("Score: " + score);
+                        currentQ = generator.generateQuestion(false, false);
+                        questionField.setText(currentQ);
+                        answerField.setText("");
+                    }
+                    else answerField.setText("Press 'start' to begin!");
+                }
+            }
+        });
     }
 
         public static void main(String[] args) {
-            JFrame frame = new JFrame("frmMainScreen");
+            JFrame frame = new JFrame("Math Solver Game");
             Gameplay gameplay = new Gameplay();
             frame.setContentPane(gameplay.background);
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            frame.pack();
+            frame.setSize(700, 400);
             frame.setVisible(true);
         }
     }
