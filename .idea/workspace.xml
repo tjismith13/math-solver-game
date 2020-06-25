@@ -3,8 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="fd3d7b08-dd93-4ce4-afe6-bf73e9027c3c" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Gameplay.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/Gameplay.form" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Gameplay.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Gameplay.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/QuestionGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/QuestionGenerator.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -28,18 +28,25 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Gameplay.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="200">
-              <caret line="169" lean-forward="true" selection-start-line="169" selection-end-line="169" />
+            <state relative-caret-position="495">
+              <caret line="33" column="40" selection-start-line="33" selection-start-column="40" selection-end-line="33" selection-end-column="40" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#1174#2060#0" expanded="true" />
-                <element signature="e#2059#2060#0" expanded="true" />
-                <element signature="e#6544#10777#0" expanded="true" />
-                <element signature="e#10776#10777#0" expanded="true" />
+                <element signature="e#6599#10832#0" expanded="true" />
+                <element signature="e#10831#10832#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/QuestionGenerator.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="591">
+              <caret line="76" column="57" lean-forward="true" selection-start-line="76" selection-start-column="57" selection-end-line="76" selection-end-column="57" />
             </state>
           </provider>
         </entry>
@@ -66,20 +73,20 @@
       <list>
         <option value="$PROJECT_DIR$/src/Clock.java" />
         <option value="$PROJECT_DIR$/src/HighScoreStorage" />
-        <option value="$PROJECT_DIR$/src/QuestionGenerator.java" />
         <option value="$PROJECT_DIR$/src/IntChecker.java" />
         <option value="$PROJECT_DIR$/src/HighScore.java" />
         <option value="$PROJECT_DIR$/src/ClockThread.java" />
         <option value="$PROJECT_DIR$/src/Gameplay.form" />
         <option value="$PROJECT_DIR$/src/Gameplay.java" />
+        <option value="$PROJECT_DIR$/src/QuestionGenerator.java" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="42" />
+    <option name="x" value="35" />
     <option name="y" value="23" />
-    <option name="width" value="1440" />
-    <option name="height" value="823" />
+    <option name="width" value="1221" />
+    <option name="height" value="822" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
@@ -183,17 +190,17 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="42" y="23" width="1440" height="822" extended-state="0" />
+    <frame x="35" y="23" width="1221" height="822" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.3390558" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.21034776" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="UI Designer" order="3" />
       <window_info id="Favorites" order="4" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32876712" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.3520548" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.35068494" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39910978" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -257,13 +264,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/QuestionGenerator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1200">
-          <caret line="80" column="13" selection-start-line="80" selection-start-column="13" selection-end-line="80" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/ClockThread.java" />
     <entry file="file://$PROJECT_DIR$/src/HighScore.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -280,15 +280,20 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Gameplay.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="200">
-          <caret line="169" lean-forward="true" selection-start-line="169" selection-end-line="169" />
+        <state relative-caret-position="495">
+          <caret line="33" column="40" selection-start-line="33" selection-start-column="40" selection-end-line="33" selection-end-column="40" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#1174#2060#0" expanded="true" />
-            <element signature="e#2059#2060#0" expanded="true" />
-            <element signature="e#6544#10777#0" expanded="true" />
-            <element signature="e#10776#10777#0" expanded="true" />
+            <element signature="e#6599#10832#0" expanded="true" />
+            <element signature="e#10831#10832#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/QuestionGenerator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="591">
+          <caret line="76" column="57" lean-forward="true" selection-start-line="76" selection-start-column="57" selection-end-line="76" selection-end-column="57" />
         </state>
       </provider>
     </entry>

@@ -31,7 +31,7 @@ public class Gameplay {
 
     public Gameplay() {
 
-        //When start/restart is pressed
+        //When start/restart is pressed.
         startButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -43,13 +43,13 @@ public class Gameplay {
                             timeClock.setText("Time Remaining: " + clock.timeRemaining());
                         }
                         if (clock.timeRemaining() < 1) {
-                            //Game reset
+                            //Game reset.
                             timeClock.setText("Time Remaining: 0");
                             answerField.setText("Answer");
                             questionField.setText("Question");
                             actualAnswer.setText("");
 
-                            //Update and display high score
+                            //Update and display high score.
                             highScoreChecker.updateHighScore(score);
                             highScore.setText("High Score: " + highScoreChecker.getHighScore());
                         }
@@ -58,12 +58,12 @@ public class Gameplay {
 
                 clockThread.start();
 
-                //Set or Reset Game
+                //Set or Reset Game.
                 answerField.setText("");
                 score = 0;
                 questionsCorrect.setText("Score " + score);
 
-                //Set question generator
+                //Set question generator.
                 currentQ = generator.generateQuestion(true, false);
                 questionField.setText(currentQ);
 
@@ -76,13 +76,13 @@ public class Gameplay {
             @Override
             public void actionPerformed(ActionEvent e) {
 
-                //Ensures game is started
+                //Ensures game is started.
                 if (startButton.getText().equals("Start")) answerField.setText("Press 'start' to begin!");
 
-                //While game is happening, first 15 seconds
+                //While game is happening, first 15 seconds.
                 else if (clock.timeRemaining() >= 45){
 
-                    //Check that answer is an integer
+                    //Check that answer is an integer.
                     String answerText = answerField.getText();
                     if (!intChecker.isInt(answerText)) answer = -1000;
 
@@ -90,26 +90,26 @@ public class Gameplay {
 
                     else answer = Integer.parseInt(answerText);
 
-                    //Check answer correctness and update score based on result
-                    if (generator.correct(currentQ) == answer) {
+                    //Check answer correctness and update score based on result.
+                    if (generator.answerIsCorrect(currentQ, answer)) {
                         score += 1;
                         actualAnswer.setText("Actual Answer:");
                     }
 
-                    //If answer is wrong display correct answer
-                    else actualAnswer.setText("Actual Answer: " + generator.correct(currentQ));
+                    //If answer is wrong display correct answer.
+                    else actualAnswer.setText("Actual Answer: " + generator.correctAnswer(currentQ));
 
-                    //Questions in easy mode
+                    //Questions in easy mode.
                     questionsCorrect.setText("Score: " + score);
                     currentQ = generator.generateQuestion(true, false);
                     questionField.setText(currentQ);
                     answerField.setText("");
                 }
 
-                //While game is happening, middle 30 seconds
+                //While game is happening, middle 30 seconds.
                 else if (clock.timeRemaining() >= 15 && clock.timeRemaining() < 45){
 
-                    //Check that answer is an integer
+                    //Check that answer is an integer.
                     String answerText = answerField.getText();
                     if (!intChecker.isInt(answerText)) answer = -1000;
 
@@ -117,25 +117,25 @@ public class Gameplay {
 
                     else answer = Integer.parseInt(answerText);
 
-                    //Check answer correctness and update score based on result
-                    if (generator.correct(currentQ) == answer) {
+                    //Check answer correctness and update score based on result.
+                    if (generator.answerIsCorrect(currentQ, answer)) {
                         score += 1;
                         actualAnswer.setText("Actual Answer:");
                     }
 
-                    //If answer is wrong display correct answer
-                    else actualAnswer.setText("Actual Answer: " + generator.correct(currentQ));
+                    //If answer is wrong display correct answer.
+                    else actualAnswer.setText("Actual Answer: " + generator.correctAnswer(currentQ));
 
-                    //Questions in medium difficulty mode
+                    //Questions in medium difficulty mode.
                     questionsCorrect.setText("Score: " + score);
                     currentQ = generator.generateQuestion(false, true);
                     questionField.setText(currentQ);
                     answerField.setText("");
                 }
-                //While game is happening, last 15 seconds
+                //While game is happening, last 15 seconds.
                 else if (clock.timeRemaining() < 15 && clock.timeRemaining() > 0) {
 
-                    //Check that answer is an integer
+                    //Check that answer is an integer.
                     String answerText = answerField.getText();
                     if (!intChecker.isInt(answerText)) answer = -1000;
 
@@ -143,16 +143,16 @@ public class Gameplay {
 
                     else answer = Integer.parseInt(answerText);
 
-                    //Check answer correctness and update score based on result
-                    if (generator.correct(currentQ) == answer) {
+                    //Check answer correctness and update score based on result.
+                    if (generator.answerIsCorrect(currentQ, answer)) {
                         score += 1;
                         actualAnswer.setText("Actual Answer:");
                     }
 
-                    //If answer is wrong display correct answer
-                    else actualAnswer.setText("Actual Answer: " + generator.correct(currentQ));
+                    //If answer is wrong display correct answer.
+                    else actualAnswer.setText("Actual Answer: " + generator.correctAnswer(currentQ));
 
-                    //Questions in hard mode
+                    //Questions in hard mode.
                     questionsCorrect.setText("Score: " + score);
                     currentQ = generator.generateQuestion(false, false);
                     questionField.setText(currentQ);
@@ -162,18 +162,19 @@ public class Gameplay {
             }
         });
 
-        //Adding logic of submit button to enter key
+        //Adding logic of submit button to enter key.
         answerField.addKeyListener(new KeyAdapter() {
             @Override
             public void keyPressed(KeyEvent e) {
                 if(e.getKeyCode() == KeyEvent.VK_ENTER) {
-                    //Ensures game is started
+
+                    //Ensures game is started.
                     if (startButton.getText().equals("Start")) answerField.setText("Press 'start' to begin!");
 
-                        //While game is happening, first 15 seconds
+                        //While game is happening, first 15 seconds.
                     else if (clock.timeRemaining() >= 45){
 
-                        //Check that answer is an integer
+                        //Check that answer is an integer.
                         String answerText = answerField.getText();
                         if (!intChecker.isInt(answerText)) answer = -1000;
 
@@ -181,23 +182,23 @@ public class Gameplay {
 
                         else answer = Integer.parseInt(answerText);
 
-                        //Check answer correctness and update score based on result
-                        if (generator.correct(currentQ) == answer) {
+                        //Check answer correctness and update score based on result.
+                        if (generator.answerIsCorrect(currentQ, answer)) {
                             score += 1;
                             actualAnswer.setText("Actual Answer:");
                         }
 
-                        //If answer is wrong display correct answer
-                        else actualAnswer.setText("Actual Answer: " + generator.correct(currentQ));
+                        //If answer is wrong display correct answer.
+                        else actualAnswer.setText("Actual Answer: " + generator.correctAnswer(currentQ));
 
-                        //Questions in easy mode
+                        //Questions in easy mode.
                         questionsCorrect.setText("Score: " + score);
                         currentQ = generator.generateQuestion(true, false);
                         questionField.setText(currentQ);
                         answerField.setText("");
                     }
 
-                    //While game is happening, middle 30 seconds
+                    //While game is happening, middle 30 seconds.
                     else if (clock.timeRemaining() >= 15 && clock.timeRemaining() < 45){
 
                         //Check that answer is an integer
@@ -208,25 +209,25 @@ public class Gameplay {
 
                         else answer = Integer.parseInt(answerText);
 
-                        //Check answer correctness and update score based on result
-                        if (generator.correct(currentQ) == answer) {
+                        //Check answer correctness and update score based on result.
+                        if (generator.answerIsCorrect(currentQ, answer)) {
                             score += 1;
                             actualAnswer.setText("Actual Answer:");
                         }
 
-                        //If answer is wrong display correct answer
-                        else actualAnswer.setText("Actual Answer: " + generator.correct(currentQ));
+                        //If answer is wrong display correct answer.
+                        else actualAnswer.setText("Actual Answer: " + generator.correctAnswer(currentQ));
 
-                        //Questions in medium difficulty mode
+                        //Questions in medium difficulty mode.
                         questionsCorrect.setText("Score: " + score);
                         currentQ = generator.generateQuestion(false, true);
                         questionField.setText(currentQ);
                         answerField.setText("");
                     }
-                    //While game is happening, last 15 seconds
+                    //While game is happening, last 15 seconds.
                     else if (clock.timeRemaining() < 15 && clock.timeRemaining() > 0) {
 
-                        //Check that answer is an integer
+                        //Check that answer is an integer.
                         String answerText = answerField.getText();
                         if (!intChecker.isInt(answerText)) answer = -1000;
 
@@ -234,16 +235,16 @@ public class Gameplay {
 
                         else answer = Integer.parseInt(answerText);
 
-                        //Check answer correctness and update score based on result
-                        if (generator.correct(currentQ) == answer) {
+                        //Check answer correctness and update score based on result.
+                        if (generator.answerIsCorrect(currentQ, answer)) {
                             score += 1;
                             actualAnswer.setText("Actual Answer:");
                         }
 
-                        //If answer is wrong display correct answer
-                        else actualAnswer.setText("Actual Answer: " + generator.correct(currentQ));
+                        //If answer is wrong display correct answer.
+                        else actualAnswer.setText("Actual Answer: " + generator.correctAnswer(currentQ));
 
-                        //Questions in hard mode
+                        //Questions in hard mode.
                         questionsCorrect.setText("Score: " + score);
                         currentQ = generator.generateQuestion(false, false);
                         questionField.setText(currentQ);

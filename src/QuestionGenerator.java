@@ -5,33 +5,38 @@ public class QuestionGenerator {
     private int firstNum;
     private int secondNum;
 
+    //Generates sign, assigning this to sign field.
+    //Returns corresponding sign number
+    //0: Addition, 1: Multiplication, 2: Subtraction, 3: Division.
+    private String generateSign(boolean hard) {
+        String sign = "";
+        int signGenerator;
+        if(!hard) {
+            signGenerator = random.nextInt(3);
+            if(signGenerator == 0) sign = "+";
+            else if (signGenerator == 1) sign = "*";
+            else if (signGenerator == 2) sign = "-";
+        }
+
+        //Division only an option for hard questions.
+        else {
+            signGenerator = random.nextInt(4);
+            if (signGenerator == 0) sign = "+";
+            else if (signGenerator == 1) sign = "*";
+            else if (signGenerator == 2) sign = "-";
+            else if (signGenerator == 3) sign = "/";
+        }
+        return sign;
+    }
+
     //When implementing ensure only 1 boolean is true. Leave both false for hard.
     public String generateQuestion(boolean easy, boolean medium) {
 
-        //Generate operator randomly
-        int signGenerator = random.nextInt(4);
-        String sign = " ";
-        if (signGenerator == 0) {
-            sign = "+";
-        }
-        else if (signGenerator == 1) {
-            sign = "*";
-        }
-        else if (signGenerator == 2) {
-            sign = "-";
-        }
-        else if (signGenerator == 3) {
-            sign = "/";
-        }
-
         //Easy question generator, numbers lower than 10.
-        //Division corrected to not have 0 in the denominator, ensure result is whole number.
+        //No division.
         if (easy) {
-            if(signGenerator == 3) {
-                secondNum = random.nextInt(10) + 1;
-                firstNum = secondNum * random.nextInt(5);
-            }
-            else if (signGenerator == 2) {
+            String sign = generateSign(false);
+            if (sign.equals("-")) {
                 firstNum = random.nextInt(10);
                 secondNum = random.nextInt(10);
                 while(secondNum > firstNum) {
@@ -47,32 +52,31 @@ public class QuestionGenerator {
         }
 
         //Medium question generator, one number less than 13, one less than 10.
-        //Division can have larger numerator.
+        //No division.
         else if (medium) {
-            if (signGenerator == 3) {
-                secondNum = random.nextInt(13) + 1;
-                firstNum = secondNum * random.nextInt(6);
-            } else if (signGenerator == 2) {
+            String sign = generateSign(false);
+             if (sign.equals("-")) {
                 firstNum = random.nextInt(10);
                 secondNum = random.nextInt(10);
                 while (secondNum > firstNum) {
                     secondNum = random.nextInt(10);
                 }
-            } else {
+            }
+             else {
                 firstNum = random.nextInt(13);
                 secondNum = random.nextInt(10);
             }
             return firstNum + sign + secondNum;
         }
 
-
-        //Hard question generator, both numbers less than 13
+        //Hard question generator, both numbers less than 13.
         else {
-            if(signGenerator == 3) {
+            String sign = generateSign(true);
+            if(sign.equals("/")) {
                 secondNum = random.nextInt(13) + 1;
                 firstNum = secondNum * random.nextInt(7);
             }
-            else if (signGenerator == 2) {
+            else if (sign.equals("-")) {
                 firstNum = random.nextInt(10);
                 secondNum = random.nextInt(10);
                 while (secondNum > firstNum) {
@@ -83,14 +87,13 @@ public class QuestionGenerator {
                 firstNum = random.nextInt(13);
                 secondNum = random.nextInt(13);
             }
-
             return firstNum + sign + secondNum;
         }
     }
 
     //Check for correct answer. String must be presented in the same form as the generator outputs.
     //No spaces in string.
-    public int correct (String question) {
+    public int correctAnswer (String question) {
         char[] chars = question.toCharArray();
 
         //Check if question has two double digit numbers.
@@ -105,18 +108,10 @@ public class QuestionGenerator {
 
             //Check operator sign and evaluate,
             //return true if the answer passed in is correct.
-            if(chars[2] == '*') {
-                return firstNum * secondNum;
-            }
-            else if(chars[2] == '+') {
-                return firstNum + secondNum;
-            }
-            else if(chars[2] == '-') {
-                return firstNum - secondNum;
-            }
-            else {
-                return firstNum / secondNum;
-            }
+            if(chars[2] == '*') return firstNum * secondNum;
+            else if(chars[2] == '+') return firstNum + secondNum;
+            else if(chars[2] == '-') return firstNum - secondNum;
+            else return firstNum / secondNum;
         }
 
         //Check if question has two single digit numbers.
@@ -127,18 +122,10 @@ public class QuestionGenerator {
 
             //Check sign and evaluate, returning
             //true or false based on passed answer.
-            if(chars[1] == '*') {
-                return firstNum * secondNum;
-            }
-            else if(chars[1] == '+') {
-                return firstNum + secondNum;
-            }
-            else if(chars[1] == '-') {
-                return firstNum - secondNum;
-            }
-            else {
-                return firstNum / secondNum;
-            }
+            if(chars[1] == '*') return firstNum * secondNum;
+            else if(chars[1] == '+') return firstNum + secondNum;
+            else if(chars[1] == '-') return firstNum - secondNum;
+            else return firstNum / secondNum;
         }
 
         //Question has one single digit and one double digit number.
@@ -162,18 +149,17 @@ public class QuestionGenerator {
 
             //Check sign and evaluate, return true or false
             //based on passed answer.
-            if(chars[1] == '*' || chars[2] == '*') {
-                return firstNum * secondNum;
-            }
-            else if(chars[1] == '+' || chars[2] == '+') {
-                return firstNum + secondNum;
-            }
-            else if(chars[1] == '-' || chars[2] == '-') {
-                return firstNum - secondNum;
-            }
-            else {
-                return firstNum / secondNum;
-            }
+            if(chars[1] == '*' || chars[2] == '*') return firstNum * secondNum;
+            else if(chars[1] == '+' || chars[2] == '+') return firstNum + secondNum;
+            else if(chars[1] == '-' || chars[2] == '-') return firstNum - secondNum;
+            else return firstNum / secondNum;
         }
+    }
+
+    //Returns whether answer (taken as input) is equal to the
+    //correct answer, which is evaluated using the correctAnswer method.
+    public boolean answerIsCorrect(String question, int answer) {
+        int correctAnswer = correctAnswer(question);
+        return correctAnswer == answer;
     }
 }
